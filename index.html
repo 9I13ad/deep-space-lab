@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>我的小实验室</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- 标题那套逻辑 -->
+  <script src="js/title.js" defer></script>
+</head>
+<body>
+  <!-- 整个首屏容器 -->
+  <div class="hero" id="hero">
+    <!-- ✅ 随机图片 / 视频背景层 -->
+    <div class="hero-media" id="hero-media"></div>
+
+    <!-- ✅ 流星背景层（盖在图片/视频上面） -->
+    <div class="space">
+      <div class="sky-dots" id="sky-dots"></div>
+      <div class="stars" id="stars"></div>
+    </div>
+
+    <!-- ✅ 你的页面内容 -->
+    <main class="page">
+        <h1>乐 · Deep Space</h1>
+        <p class="tagline">一个用来乱试、乱写、乱想的地方。</p>
+
+        <section class="section">
+            <h2>这里是干嘛的？</h2>
+            <p>
+            没有明确主题，也不保证稳定。  
+            可能会出现：
+            </p>
+            <ul>
+            <li>奇奇怪怪的前端动效实验</li>
+            <li>网络 / 安全 / 折腾日志</li>
+            <li>一时兴起写的碎片文字</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>目前已经折腾出来的东西</h2>
+            <ul>
+            <li>✨ 随机图片 / 视频背景 + 视差效果</li>
+            <li>✨ 流星雨：数量 / 角度 / 颜色 / 亮度全部随机</li>
+            <li>✨ 会说话的标题：根据时间 / 离开 / 回来自动换文案</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>以后可能会出现</h2>
+            <ul>
+            <li>🛰️ 一些小工具 Demo（比如网络 / 日常自动化）</li>
+            <li>🪐 乱七八糟的实验页面链接</li>
+            <li>📎 觉得还行的东西，偶尔会认真整理一下</li>
+            </ul>
+        </section>
+
+        <p class="footer-line">
+            这个页面本身，就是第一个实验。
+        </p>
+
+        <p>你的 IP：<span id="ip">检测中…</span></p>
+        <p id="ip-status">正在从深空节点获取大概位置…</p>
+
+    </main>
+
+  </div>
+
+  <!-- 随机背景脚本 -->
+  <script src="js/bg.js"></script>
+  <!-- 流星脚本 -->
+  <script src="js/stars.js"></script>
+  <script src="js/ip.js"></script>
+
+</body>
+</html>
