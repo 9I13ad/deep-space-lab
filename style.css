@@ -1,0 +1,258 @@
+/* 整个页面字体等 */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: #020010; /* 兜底色，万一媒体没加载出来 */
+  overflow: hidden;
+  font-family: "Microsoft YaHei", system-ui, sans-serif;
+}
+
+/* 首屏容器 */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* 底层：随机图片 / 视频背景 */
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  transition: background-position 0.25s ease;
+}
+
+/* 如果是图片背景时，加这个类（JS 里加的） */
+.hero.image-bg .hero-media {
+  background-repeat: no-repeat;
+}
+
+/* 视频样式 */
+.hero-video {
+  width: 105%;
+  height: 105%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 0.4s ease, translate 0.2s ease;
+}
+
+/* 鼠标 hover 时轻微放大（你之前的效果） */
+.hero.hover-active .hero-media {
+  /* 如果不想放大，可以去掉这句 */
+  /* transform: scale(1.05); */
+}
+
+.hero.hover-active .hero-video {
+  transform: scale(1.07);
+}
+
+/* 中层：流星层，固定在背景上 */
+.space {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none; /* 不挡点击 */
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+}
+
+/* 顶层：你的内容 */
+.page {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  padding: 40px 8vw;
+  color: #ffffff;
+}
+
+.star {
+  --angle: 45deg;
+  --tail-alpha: 0.5;
+  --head-alpha: 0.7;
+
+  position: absolute;
+  width: 140px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,0),
+    rgba(255,255,255,var(--tail-alpha))
+  );
+  box-shadow: 0 0 6px rgba(255,255,255,0.25);
+  transform-origin: 0 50%;
+  animation: star-ani 5s linear infinite;
+  opacity: 0;
+  z-index: 2;
+}
+
+.star::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translate(50%, -50%);
+  border-radius: 50%;
+  background: rgba(255,255,255,var(--head-alpha));
+  box-shadow:
+    0 0 4px 1px rgba(255,255,255,var(--head-alpha)),
+    0 0 10px 3px rgba(180,220,255,calc(var(--head-alpha) * 0.8));
+}
+
+.pink {
+  background: linear-gradient(
+    to right,
+    rgba(255,90,153,0),
+    rgba(255,90,153,0.7)
+  );
+  box-shadow: 0 0 6px rgba(255,90,153,0.3);
+}
+.pink::after {
+  background: rgba(255,90,153,0.9);
+}
+
+/* 蓝色流星 */
+.blue {
+  background: linear-gradient(
+    to right,
+    rgba(0,255,255,0),
+    rgba(0,255,255,0.7)
+  );
+  box-shadow: 0 0 6px rgba(0,255,255,0.3);
+}
+.blue::after {
+  background: rgba(0,255,255,0.9);
+}
+
+/* 黄色流星 */
+.yellow {
+  background: linear-gradient(
+    to right,
+    rgba(255,205,92,0),
+    rgba(255,205,92,0.7)
+  );
+  box-shadow: 0 0 6px rgba(255,205,92,0.3);
+}
+.yellow::after {
+  background: rgba(255,205,92,0.9);
+}
+
+/* 流星运动动画 */
+@keyframes star-ani {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translate3d(0, 0, 0);
+  }
+  10% {
+    opacity: 1;
+    transform: rotate(var(--angle)) translate3d(0, 0, 0);
+  }
+  70% {
+    transform: rotate(var(--angle)) translate3d(110vw, 0, 0);
+    opacity: 0.9;
+  }
+  100% {
+    transform: rotate(var(--angle)) translate3d(130vw, 0, 0);
+    opacity: 0;
+  }
+}
+
+.sky-dots {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.sky-dot {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  opacity: 0.5;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50%      { opacity: 0.9; transform: scale(1.4); }
+}
+
+
+.page {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  padding: 60px 8vw 40px;
+  color: #ffffff;
+}
+
+.page h1 {
+  font-size: 40px;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.page .tagline {
+  margin: 0 0 32px;
+  opacity: 0.85;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.section h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.section p {
+  margin: 0 0 8px;
+  opacity: 0.9;
+}
+
+.section ul {
+  margin: 0 0 8px 1.2em;
+  padding: 0;
+  opacity: 0.9;
+}
+
+.footer-line {
+  margin-top: 40px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+/* 键盘彩蛋：流星暴雨模式 */
+.meteor-storm .star {
+  /* 飞得更快一点 */
+  animation-duration: 2.5s !important;
+  /* 多一点亮度 */
+  --tail-alpha: 1.8;
+  --head-alpha: 3.0;
+  /* 效果更“炸”一点 */
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.7));
+}
+
+/* 可以顺便让整体稍微提亮一点点（可选） */
+.meteor-storm .hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%,
+              rgba(255,255,255,0.12),
+              transparent 60%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
